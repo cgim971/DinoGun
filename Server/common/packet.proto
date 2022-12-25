@@ -1,0 +1,28 @@
+syntax="proto3";
+package dinoGunio;
+
+option csharp_namespace = "C.Proto.DinoGun";
+
+enum MSGID
+{
+    CMOVE = 0;
+    SMOVE = 1;    
+
+}
+
+message PlayerInfo
+{
+    int32 playerId = 1;
+    float x = 2;
+    float y = 3;
+}
+
+message CMove 
+{
+    PlayerInfo playerInfo = 1;
+}
+
+message SMove 
+{
+    PlayerInfo playerInfo = 1;
+}
