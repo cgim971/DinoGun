@@ -33,10 +33,9 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Position spawnPosition = new Position { Rotate = 0, X = 0, Y = 0, GunRotate = 0 };
+            C_Pos cPos = new C_Pos { X = 1, Y = 2 };
 
-            C_Move cPos = new C_Move { PlyaerId = 1, SpawnPosition = spawnPosition };
-            NetworkManager.Instance.RegisterSend((ushort)MSGID.CMove, cPos);
+            NetworkManager.Instance.RegisterSend((ushort)MSGID.CPos, cPos);
         }
     }
 }

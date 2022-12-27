@@ -5,99 +5,18 @@ option csharp_namespace = "C.Proto.DinoGun";
 
 enum MSGID
 {
-    S_INIT = 0;
-    S_ENTER = 1;
-    C_ENTER = 2;
-    
-    S_INITLIST = 3;
-    S_PLAYERLIST = 4;
-    
-    C_MOVE = 5;
-    
-    S_LEAVE = 6;
-
-    S_FIRE = 7;
-    C_FIRE = 8;
-    
-    S_DEAD = 9;
-    C_DEAD = 10;
+    S_POS = 0;
+    C_POS = 1; 
 }
 
-message PlayerInfo
+message S_Pos
 {
-    int32 playerId = 1;
-    string name = 2;
-    Position position = 3;
+    float x = 1;
+    float y = 2;
 }
 
-message Position
+message C_Pos
 {
-    float rotate = 1;
-    float x = 2;
-    float y = 3;
-    float gunRotate = 4;
-}
-
-message S_Init
-{
-    int32 plyaerId = 1;
-    Position spawnPosition = 2;
-}
-
-message S_Enter
-{
-    PlayerInfo player = 1;
-}
-message C_Enter 
-{
-    string name = 1;
-    Position position = 2;
-}
-    
-message S_InitList 
-{
-    repeated PlayerInfo players = 1;
-}
-message S_PlayerList 
-{
-    repeated PlayerInfo players = 1;
-}
-
-message C_Move
-{
-    int32 plyaerId = 1;
-    Position spawnPosition = 2;
-}
-
-message S_Leave
-{
-    int32 playerId = 1; 
-}
-
-message S_Fire
-{
-    int32 playerId = 1;
-    int32 fireId = 2;
-    float x = 3;
-    float y = 4;
-    float directionX = 5;
-    float directionY = 6;
-}
-message C_Fire
-{
-    int32 playerId = 1;
-    int32 fireId = 2;
-    float x = 3;
-    float y = 4;
-    float directionX = 5;
-    float directionY = 6;
-}
-    
-message S_Dead 
-{
-    int32 playerId = 1;
-}
-message C_Dead
-{
-    int32 playerId = 1;
+    float x = 1;
+    float y = 2;
 }

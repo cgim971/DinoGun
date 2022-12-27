@@ -27,12 +27,9 @@ socketServer.on("connection", (soc: WS, req: IncomingMessage) => {
         let code: number = (data.slice(2, 4) as Buffer).readInt16LE();
         let payload: Buffer = data.slice(4) as Buffer;
 
-        if (code == dinoGunio.MSGID.C_MOVE) {
-            let cPos: dinoGunio.C_Move = dinoGunio.C_Move.deserialize(payload);
-            console.log(cPos.plyaerId);
-            console.log(cPos.spawnPosition.x);
-            console.log(cPos.spawnPosition.y);
+        if (code == dinoGunio.MSGID.C_POS) {
+            let cPos: dinoGunio.C_Pos = dinoGunio.C_Pos.deserialize(payload);
+            console.log(cPos.x, cPos.y);
         }
-
     });
 });
