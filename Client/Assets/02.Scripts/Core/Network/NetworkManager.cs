@@ -20,8 +20,8 @@ public class NetworkManager : MonoBehaviour
     private CancellationToken _quitToken;
 
     private PacketManager _packetManager;
-    private Queue<PacketMessage> _sendQueue = null;
-    private bool _isReadyToSend = true;
+    private Queue<PacketMessage> _sendQueue = null; // 보내질 명단
+    private bool _isReadyToSend = true; // 다른 걸 보낼 때는 보내지 못 한다.
 
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class NetworkManager : MonoBehaviour
                 IPacketHandler handler = _packetManager.GetPacketHandler(pMsg.Id);
                 if (handler != null)
                 {
-                    handler.Process(pMsg.Message);
+                    handler.Process(pMsg.Message);  // 실행
                 }
                 else
                 {
@@ -61,20 +61,17 @@ public class NetworkManager : MonoBehaviour
 
         if (_isReadyToSend && _sendQueue.Count > 0)
         {
-            SendMessage();
+            SendMessage(); // 메시지를 보내라
         }
     }
 
-    public void RegisterSend(ushort code, IMessage msg)
-    {
-        _sendQueue.Enqueue(new PacketMessage { Id = code, Message = msg });
-    }
+    public void RegisterSend(ushort code, IMessage msg) => _sendQueue.Enqueue(new PacketMessage { Id = code, Message = msg });
 
     private async void SendMessage()
     {
         if (_socket != null && _socket.State == WebSocketState.Open)
         {
-            _isReadyToSend = false;
+            _isReadyToSend = false; // 보내는 중
 
             List<PacketMessage> sendList = new List<PacketMessage>();
             while (_sendQueue.Count > 0)
@@ -85,12 +82,12 @@ public class NetworkManager : MonoBehaviour
             byte[] sendBuffer = new byte[1024 * 10];
             foreach (PacketMessage pMsg in sendList)
             {
-                int len = pMsg.Message.CalculateSize();
+                int len = pMsg.Message.CalculateSize();     // 패킷의 크기를 가져오고
                 Array.Copy(BitConverter.GetBytes((ushort)(len + 4)), 0, sendBuffer, 0, sizeof(ushort));
                 Array.Copy(BitConverter.GetBytes(pMsg.Id), 0, sendBuffer, 2, sizeof(ushort));
                 Array.Copy(pMsg.Message.ToByteArray(), 0, sendBuffer, 4, len);
 
-                ArraySegment<byte> segment = new ArraySegment<byte>(sendBuffer);
+                ArraySegment<byte> segment = new ArraySegment<byte>(sendBuffer, 0, len + 4);
                 await _socket.SendAsync(segment, WebSocketMessageType.Binary, true, CancellationToken.None);
             }
 
@@ -98,7 +95,7 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public async void Connection()
+    public async void Connection() // 연결 시도
     {
         if (_socket != null && _socket.State == WebSocketState.Open)
         {
@@ -120,32 +117,33 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    private async void ReceiveLoop()
+    private async void ReceiveLoop()  // 서버가 있다면 계속 돌 함수
     {
         while (_socket != null && _socket.State == WebSocketState.Open)
         {
             try
             {
-                WebSocketReceiveResult result = await _socket.ReceiveAsync(_recvBuffer.WriteSegment, CancellationToken.None);
+                WebSocketReceiveResult result = await _socket.ReceiveAsync(_recvBuffer.WriteSegment, CancellationToken.None); // 값을 받을 때 까지
 
-                if (result.MessageType == WebSocketMessageType.Binary)
+                if (result.MessageType == WebSocketMessageType.Binary) // 2진 데이터로 왔는가
                 {
-                    if (result.EndOfMessage == true)
+                    if (result.EndOfMessage == true) // 내용이 끝났는지
                     {
                         _recvBuffer.OnWrite(result.Count);
                         int readByte = ProcessPacket(_recvBuffer.ReadSegment);
-                        if (readByte == 0)
+                        // 패킷 처리를 할거
+                        if (readByte == 0) // 문제 생겼다는 의미 
                         {
                             Disconnect();
                             break;
                         }
 
-                        _recvBuffer.OnRead(readByte);
-                        _recvBuffer.Clean();
+                        _recvBuffer.OnRead(readByte); // 읽음 처리 후
+                        _recvBuffer.Clean(); // 내용 지움
                     }
                     else
                     {
-                        _recvBuffer.OnWrite(result.Count);
+                        _recvBuffer.OnWrite(result.Count); // 다 쓰긴 함 근데 더 쓸거임
                     }
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
@@ -167,10 +165,7 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    private int ProcessPacket(ArraySegment<byte> buffer)
-    {
-        return _packetManager.OnRecvPacket(buffer);
-    }
+    private int ProcessPacket(ArraySegment<byte> buffer) => _packetManager.OnRecvPacket(buffer);
 
     public void Disconnect()
     {
