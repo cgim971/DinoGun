@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class PacketManager : MonoBehaviour
 {
-
     private Dictionary<ushort, Action<ArraySegment<byte>, ushort>> _OnRecv;
     private Dictionary<ushort, IPacketHandler> _Handlers;
 

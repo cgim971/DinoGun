@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
-    public static NetworkManager Instance => _instance;
+    public static NetworkManager Instance { get => _instance; set => _instance = value; }
     private static NetworkManager _instance;
 
     private string _url;
@@ -20,15 +20,14 @@ public class NetworkManager : MonoBehaviour
     private CancellationToken _quitToken;
 
     private PacketManager _packetManager;
-
-    private List<PacketMessage> _sendList = null;
     private Queue<PacketMessage> _sendQueue = null;
-    private bool _isReadyToSend = false;
+    private bool _isReadyToSend = true;
 
     private void Awake()
     {
         if (_instance != null)
             Debug.LogError("Multiple NetworkManager is running!");
+
         _instance = this;
     }
 
@@ -37,7 +36,7 @@ public class NetworkManager : MonoBehaviour
         _url = url;
         _recvBuffer = new RecvBuffer(1024 * 10);
         _packetManager = new PacketManager();
-        _sendList = new List<PacketMessage>();
+        _sendQueue = new Queue<PacketMessage>();
     }
 
     private void Update()
@@ -68,7 +67,7 @@ public class NetworkManager : MonoBehaviour
 
     public void RegisterSend(ushort code, IMessage msg)
     {
-        _sendList.Add(new PacketMessage { Id = code, Message = msg });
+        _sendQueue.Enqueue(new PacketMessage { Id = code, Message = msg });
     }
 
     private async void SendMessage()
@@ -84,11 +83,9 @@ public class NetworkManager : MonoBehaviour
             }
 
             byte[] sendBuffer = new byte[1024 * 10];
-            foreach (PacketMessage pMsg in _sendList)
+            foreach (PacketMessage pMsg in sendList)
             {
                 int len = pMsg.Message.CalculateSize();
-                byte[] sendBuffer = new byte[len + 4];
-
                 Array.Copy(BitConverter.GetBytes((ushort)(len + 4)), 0, sendBuffer, 0, sizeof(ushort));
                 Array.Copy(BitConverter.GetBytes(pMsg.Id), 0, sendBuffer, 2, sizeof(ushort));
                 Array.Copy(pMsg.Message.ToByteArray(), 0, sendBuffer, 4, len);

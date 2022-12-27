@@ -1,3 +1,4 @@
+using C.Proto.DinoGun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform _mainMap;
+
+    [SerializeField] private string _connectUrl;
 
     public GameManager Instance => _instance;
     private static GameManager _instance;
@@ -15,26 +18,25 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Multiple GameManager is running!");
         _instance = this;
 
+        NetworkManager.Instance = gameObject.AddComponent<NetworkManager>();
+        NetworkManager.Instance.Init(_connectUrl);
+        NetworkManager.Instance.Connection();
+
         MapManager.Instance = new MapManager(_mainMap);
     }
 
-    private void Update()
-    {
-        Test();
-    }
+    private void OnDestroy() => NetworkManager.Instance.Disconnect();
+
+    private void Update() => Test();
 
     void Test()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 pos = Input.mousePosition;
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(pos);
-            worldPos.z = 0;
+            Position spawnPosition = new Position { Rotate = 0, X = 0, Y = 0, GunRotate = 0 };
 
-            Vector3Int tilePos = MapManager.Instance.GetTilePosition(worldPos);
-            MapCategory mc = MapManager.Instance.GetTileCategory(tilePos);
-
-            Debug.Log($"{tilePos}, {mc}");
+            C_Move cPos = new C_Move { PlyaerId = 1, SpawnPosition = spawnPosition };
+            NetworkManager.Instance.RegisterSend((ushort)MSGID.CMove, cPos);
         }
     }
 }

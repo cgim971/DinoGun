@@ -2849,6 +2849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMap: {fileID: 1363784761}
+  _connectUrl: ws://localhost:50000
 --- !u!1 &1161316298
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class SInitHandler : IPacketHandler
     {
         S_Init s_init = packet as S_Init;
 
+        Position position = s_init.SpawnPosition;
 
+        Debug.Log($"{position.X}, {position.Y}");
     }
 }
