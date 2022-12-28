@@ -4,11 +4,11 @@ import WS, { RawData } from 'ws';
 import MapManager from './MapManager';
 import { dinoGunio } from './packet/packet';
 import Path from 'path';
+import PacketManager from './PacketManager';
+import SessionManager from './SessionManager';
+import SocketSession from './SocketSession';
 
 const App: Application = Express();
-
-MapManager.Instance = new MapManager(Path.join(__dirname, "Tilemap.txt"));
-
 const httpServer = App.listen(50000, () => {
     console.log("Server is running on 50000 port");
 });
@@ -19,17 +19,31 @@ const socketServer: WS.Server = new WS.Server({
     console.log("Socket server is running on 50000 port");
 });
 
+PacketManager.Instance = new PacketManager();
+MapManager.Instance = new MapManager(Path.join(__dirname, "Tilemap.txt"));
+SessionManager.Instance = new SessionManager();
+
+let playerId: number = 1;
+
 socketServer.on("connection", (soc: WS, req: IncomingMessage) => {
 
+    const id: number = playerId;
+    let session: SocketSession = new SocketSession(soc, id, () => {
+        SessionManager.Instance.removeSession(id);
+        return;
+    });
+
+    SessionManager.Instance.addSession(session, id);
+    console.log(`플레이어 ${id} 접속`);
+
+    let msg = new dinoGunio.S_Pos({ x: 5, y: 5 });
+    session.sendData(msg.serialize(), dinoGunio.MSGID.S_POS);
+
+    playerId++;
+    
     soc.on("message", (data: RawData, isBinary: boolean) => {
-
-        let length: number = (data.slice(0, 2) as Buffer).readInt16LE();
-        let code: number = (data.slice(2, 4) as Buffer).readInt16LE();
-        let payload: Buffer = data.slice(4) as Buffer;
-
-        if (code == dinoGunio.MSGID.C_POS) {
-            let cPos: dinoGunio.C_Pos = dinoGunio.C_Pos.deserialize(payload);
-            console.log(cPos.x, cPos.y);
+        if (isBinary == true) {
+            session.receiveMsg(data);
         }
     });
 });
