@@ -1,6 +1,5 @@
 import { dinoGunio } from "./packet/packet";
 import { PacketHandler } from "./packet/PacketHandler";
-import CPosHandler from "./packet/CPosHandler";
 import CEnterHandler from "./packet/CEnterHandler";
 import CMoveHandler from "./packet/CMoveHandler";
 
@@ -19,7 +18,6 @@ export default class PacketManager {
     }
 
     register(): void {
-        this.handlerMap[dinoGunio.MSGID.C_POS] = new CPosHandler();
         this.handlerMap[dinoGunio.MSGID.C_ENTER] = new CEnterHandler();
         this.handlerMap[dinoGunio.MSGID.C_MOVE] = new CMoveHandler();
     }

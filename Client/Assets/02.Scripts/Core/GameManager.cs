@@ -41,18 +41,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy() => NetworkManager.Instance.Disconnect();
 
-    // private void Update() => Test();
-
-    void Test()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            C_Pos cPos = new C_Pos { X = 1, Y = 2 };
-
-            NetworkManager.Instance.RegisterSend((ushort)MSGID.CPos, cPos);
-        }
-    }
-
+   
     internal PlayerController SpawnPlayer(Vector3 pos, int playerId, bool isPlayer)
     {
         PlayerController playerController = Instantiate(_playerPrefab, pos, Quaternion.identity);

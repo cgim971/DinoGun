@@ -13,22 +13,7 @@ enum MSGID
     S_PLAYERLIST = 5;
     S_LEAVE = 6;
     
-    
-    
-    S_POS = 90;
-    C_POS = 91; 
-}
 
-message S_Pos
-{
-    float x = 1;
-    float y = 2;
-}
-
-message C_Pos
-{
-    float x = 1;
-    float y = 2;
 }
 
 message PlayerInfo

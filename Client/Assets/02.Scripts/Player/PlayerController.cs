@@ -3,14 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkObject
 {
 
     public bool IsRemote => _isRemote;
     bool _isRemote = false;
-
-    public int PlayerId => _playerId;
-    private int _playerId = 1;
 
     public Rigidbody2D Rigidbody => _rigidbody;
 
@@ -39,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public void SetUp(bool isPlayer, int playerId)
     {
         _isRemote = !isPlayer;
-        _playerId = playerId;
+        PlayerId = playerId;
     }
 
 
@@ -83,7 +80,7 @@ public class PlayerController : MonoBehaviour
             position.ScaleX = transform.localScale.x;
             position.GunRotate = _gunController.GunTs.rotation.z;
 
-            C_Move cMove = new C_Move { PlayerId = _playerId, Position = position };
+            C_Move cMove = new C_Move { PlayerId = PlayerId, Position = position };
 
             NetworkManager.Instance.RegisterSend((ushort)MSGID.CMove, cMove);
         }

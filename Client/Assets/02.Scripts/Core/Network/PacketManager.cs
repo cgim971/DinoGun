@@ -20,14 +20,18 @@ public class PacketManager : MonoBehaviour
 
     private void Register()
     {
-        // Test
-        _OnRecv.Add((ushort)MSGID.SPos, MakePacket<S_Pos>);
-        _Handlers.Add((ushort)MSGID.SPos, new SPosHandler());
+
+        _OnRecv.Add((ushort)MSGID.SEnter, MakePacket<S_Enter>);
+        _Handlers.Add((ushort)MSGID.SEnter, new SEnterHandler());
 
 
-        // 
         _OnRecv.Add((ushort)MSGID.SInit, MakePacket<S_Init>);
         _Handlers.Add((ushort)MSGID.SInit, new SInitHandler());
+
+
+        _OnRecv.Add((ushort)MSGID.SInitlist, MakePacket<S_InitList>);
+        _Handlers.Add((ushort)MSGID.SInitlist, new SInitListHandler());
+
 
     }
 

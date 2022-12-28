@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class NetworkObject : MonoBehaviour
 {
-    public int Id
+    public int PlayerId
     {
-        get => _id;
-        set => _id = value;
+        get => _playerId;
+        set => _playerId = value;
     }
-    private int _id;
+    private int _playerId;
 }

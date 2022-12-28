@@ -1,3 +1,4 @@
+import { dinoGunio } from "./packet/packet";
 import SocketSession from "./SocketSession";
 
 interface SessionDictionary {
@@ -27,5 +28,18 @@ export default class SessionManager {
 
             this.sessionMap[index].sendData(payload, msgCode);
         }
+    }
+
+    getPlayerList(): dinoGunio.PlayerInfo[] {
+        let list: dinoGunio.PlayerInfo[] = [];
+
+        for (let idx in this.sessionMap) {
+            let s = this.sessionMap[idx];
+            if(s.isEnter == false) continue;
+
+            list.push(new dinoGunio.PlayerInfo({ playerId: s.playerId, position: s.position }));
+        }
+
+        return list;
     }
 }
