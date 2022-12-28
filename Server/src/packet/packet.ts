@@ -7,7 +7,8 @@ import * as pb_1 from "google-protobuf";
 export namespace dinoGunio {
     export enum MSGID {
         S_POS = 0,
-        C_POS = 1
+        C_POS = 1,
+        C_MOVE = 2
     }
     export class S_Pos extends pb_1.Message {
         #one_of_decls: number[][] = [];
@@ -187,6 +188,235 @@ export namespace dinoGunio {
         }
         static deserializeBinary(bytes: Uint8Array): C_Pos {
             return C_Pos.deserialize(bytes);
+        }
+    }
+    export class Position extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            x?: number;
+            y?: number;
+            scaleX?: number;
+            gunRotate?: number;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("x" in data && data.x != undefined) {
+                    this.x = data.x;
+                }
+                if ("y" in data && data.y != undefined) {
+                    this.y = data.y;
+                }
+                if ("scaleX" in data && data.scaleX != undefined) {
+                    this.scaleX = data.scaleX;
+                }
+                if ("gunRotate" in data && data.gunRotate != undefined) {
+                    this.gunRotate = data.gunRotate;
+                }
+            }
+        }
+        get x() {
+            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+        }
+        set x(value: number) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get y() {
+            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+        }
+        set y(value: number) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get scaleX() {
+            return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
+        }
+        set scaleX(value: number) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get gunRotate() {
+            return pb_1.Message.getFieldWithDefault(this, 4, 0) as number;
+        }
+        set gunRotate(value: number) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        static fromObject(data: {
+            x?: number;
+            y?: number;
+            scaleX?: number;
+            gunRotate?: number;
+        }): Position {
+            const message = new Position({});
+            if (data.x != null) {
+                message.x = data.x;
+            }
+            if (data.y != null) {
+                message.y = data.y;
+            }
+            if (data.scaleX != null) {
+                message.scaleX = data.scaleX;
+            }
+            if (data.gunRotate != null) {
+                message.gunRotate = data.gunRotate;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                x?: number;
+                y?: number;
+                scaleX?: number;
+                gunRotate?: number;
+            } = {};
+            if (this.x != null) {
+                data.x = this.x;
+            }
+            if (this.y != null) {
+                data.y = this.y;
+            }
+            if (this.scaleX != null) {
+                data.scaleX = this.scaleX;
+            }
+            if (this.gunRotate != null) {
+                data.gunRotate = this.gunRotate;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.x != 0)
+                writer.writeFloat(1, this.x);
+            if (this.y != 0)
+                writer.writeFloat(2, this.y);
+            if (this.scaleX != 0)
+                writer.writeFloat(3, this.scaleX);
+            if (this.gunRotate != 0)
+                writer.writeFloat(4, this.gunRotate);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Position {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Position();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.x = reader.readFloat();
+                        break;
+                    case 2:
+                        message.y = reader.readFloat();
+                        break;
+                    case 3:
+                        message.scaleX = reader.readFloat();
+                        break;
+                    case 4:
+                        message.gunRotate = reader.readFloat();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Position {
+            return Position.deserialize(bytes);
+        }
+    }
+    export class C_Move extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            playerId?: number;
+            position?: Position;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("playerId" in data && data.playerId != undefined) {
+                    this.playerId = data.playerId;
+                }
+                if ("position" in data && data.position != undefined) {
+                    this.position = data.position;
+                }
+            }
+        }
+        get playerId() {
+            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+        }
+        set playerId(value: number) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get position() {
+            return pb_1.Message.getWrapperField(this, Position, 2) as Position;
+        }
+        set position(value: Position) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_position() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            playerId?: number;
+            position?: ReturnType<typeof Position.prototype.toObject>;
+        }): C_Move {
+            const message = new C_Move({});
+            if (data.playerId != null) {
+                message.playerId = data.playerId;
+            }
+            if (data.position != null) {
+                message.position = Position.fromObject(data.position);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                playerId?: number;
+                position?: ReturnType<typeof Position.prototype.toObject>;
+            } = {};
+            if (this.playerId != null) {
+                data.playerId = this.playerId;
+            }
+            if (this.position != null) {
+                data.position = this.position.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.playerId != 0)
+                writer.writeInt32(1, this.playerId);
+            if (this.has_position)
+                writer.writeMessage(2, this.position, () => this.position.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): C_Move {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new C_Move();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.playerId = reader.readInt32();
+                        break;
+                    case 2:
+                        reader.readMessage(message.position, () => message.position = Position.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): C_Move {
+            return C_Move.deserialize(bytes);
         }
     }
 }

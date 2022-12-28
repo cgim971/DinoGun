@@ -7,6 +7,9 @@ enum MSGID
 {
     S_POS = 0;
     C_POS = 1; 
+
+
+    C_MOVE = 2;
 }
 
 message S_Pos
@@ -19,4 +22,19 @@ message C_Pos
 {
     float x = 1;
     float y = 2;
+}
+
+message Position
+{
+    float x = 1;
+    float y = 2;
+    float scaleX = 3;
+    float gunRotate = 4;
+}
+
+
+message C_Move
+{
+    int32 playerId = 1;
+    Position position = 2;
 }

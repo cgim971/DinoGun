@@ -10,6 +10,6 @@ public class SPosHandler : IPacketHandler
     {
         S_Pos msg = packet as S_Pos;
 
-        Debug.Log($"{msg.X}, {msg.Y}");
+        // Debug.Log($"{msg.X}, {msg.Y}");
     }
 }
