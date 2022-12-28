@@ -11,6 +11,7 @@ export default class MapManager {
     static Instance: MapManager;
 
     mapData: number[][] = [];
+    spawnList: dinoGunio.Position[] = [];
     xMin: number = 0;
     xMax: number = 0;
     yMin: number = 0;
@@ -33,12 +34,24 @@ export default class MapManager {
         }
 
         this.mapData = this.mapData.reverse();
+
+        this.spawnList.push(
+            new dinoGunio.Position({ x: -13, y: 8 }),
+            new dinoGunio.Position({ x: 12, y: 8 }),
+            new dinoGunio.Position({ x: -13, y: -8 }),
+            new dinoGunio.Position({ x: 12, y: -8 })
+        );
     }
 
     getMapData(x: number, y: number): MapCategory {
-        x+= Math.abs(this.xMin);
-        y+= Math.abs(this.yMin);
-        
+        x += Math.abs(this.xMin);
+        y += Math.abs(this.yMin);
+
         return this.mapData[y][x];
+    }
+
+    getRandomSpawnPosition(): dinoGunio.Position {
+        let idx: number = Math.floor(Math.random() * 4);
+        return this.spawnList[idx];
     }
 }

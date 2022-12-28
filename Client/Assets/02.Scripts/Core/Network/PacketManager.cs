@@ -23,6 +23,12 @@ public class PacketManager : MonoBehaviour
         // Test
         _OnRecv.Add((ushort)MSGID.SPos, MakePacket<S_Pos>);
         _Handlers.Add((ushort)MSGID.SPos, new SPosHandler());
+
+
+        // 
+        _OnRecv.Add((ushort)MSGID.SInit, MakePacket<S_Init>);
+        _Handlers.Add((ushort)MSGID.SInit, new SInitHandler());
+
     }
 
     public IPacketHandler GetPacketHandler(ushort id)

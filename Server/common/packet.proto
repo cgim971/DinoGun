@@ -5,11 +5,18 @@ option csharp_namespace = "C.Proto.DinoGun";
 
 enum MSGID
 {
-    S_POS = 0;
-    C_POS = 1; 
-
-
-    C_MOVE = 2;
+    S_ENTER = 0;
+    S_INIT = 1;
+    C_ENTER = 2;
+    S_INITLIST = 3;
+    C_MOVE = 4;
+    S_PLAYERLIST = 5;
+    S_LEAVE = 6;
+    
+    
+    
+    S_POS = 90;
+    C_POS = 91; 
 }
 
 message S_Pos
@@ -24,6 +31,12 @@ message C_Pos
     float y = 2;
 }
 
+message PlayerInfo
+{
+    int32 playerId = 1;
+    Position position = 2;
+}
+
 message Position
 {
     float x = 1;
@@ -32,9 +45,39 @@ message Position
     float gunRotate = 4;
 }
 
+message S_Init
+{
+    int32 playerId = 1;
+    Position spawnPosition = 2;
+}
+
+message C_Enter
+{
+    Position position = 1;
+}
+
+message S_Enter
+{
+    PlayerInfo playerInfo = 1;
+}
+
+message S_Leave
+{
+    int32 playerId = 1;
+}
 
 message C_Move
 {
     int32 playerId = 1;
     Position position = 2;
+}
+
+message S_InitList
+{
+    repeated PlayerInfo playerList = 1;
+}
+
+message s_PlayerList
+{
+    repeated PlayerInfo playerList = 1;
 }

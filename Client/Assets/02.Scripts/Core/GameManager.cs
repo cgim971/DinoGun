@@ -1,4 +1,5 @@
 using C.Proto.DinoGun;
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private string _connectUrl;
 
-    public GameManager Instance => _instance;
+    [SerializeField] private PlayerController _playerPrefab;
+    public PlayerController Player => _player;
+    private PlayerController _player;
+
+
+    public static GameManager Instance => _instance;
     private static GameManager _instance;
+
+
+    private CinemachineVirtualCamera _cmVcam;
+
+
+
 
     private void Awake()
     {
@@ -23,11 +35,13 @@ public class GameManager : MonoBehaviour
         NetworkManager.Instance.Connection();
 
         MapManager.Instance = new MapManager(_mainMap);
+
+        _cmVcam = GameObject.Find("FollowCam").GetComponent<CinemachineVirtualCamera>();
     }
 
     private void OnDestroy() => NetworkManager.Instance.Disconnect();
 
-    private void Update() => Test();
+    // private void Update() => Test();
 
     void Test()
     {
@@ -38,4 +52,23 @@ public class GameManager : MonoBehaviour
             NetworkManager.Instance.RegisterSend((ushort)MSGID.CPos, cPos);
         }
     }
+
+    internal PlayerController SpawnPlayer(Vector3 pos, int playerId, bool isPlayer)
+    {
+        PlayerController playerController = Instantiate(_playerPrefab, pos, Quaternion.identity);
+        playerController.SetUp(isPlayer, playerId);
+
+        if (isPlayer)
+        {
+            _player = playerController;
+            _cmVcam.m_Follow = _player.transform;
+        }
+        else
+        {
+            // Ãß°¡
+        }
+
+        return playerController;
+    }
+
 }

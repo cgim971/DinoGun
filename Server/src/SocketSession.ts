@@ -1,11 +1,14 @@
 import WebSocket, { RawData } from "ws";
+import { dinoGunio } from "./packet/packet";
 import PacketManager from "./PacketManager";
 
 export default class SocketSession {
     socket: WebSocket;
     playerId: number;
 
-    constructor(socket: WebSocket, playerId: number, CloseCallback:Function) {
+    position: dinoGunio.Position = new dinoGunio.Position({ x: 0, y: 0, scaleX: 1, gunRotate: 0 });
+
+    constructor(socket: WebSocket, playerId: number, CloseCallback: Function) {
         this.socket = socket;
         this.playerId = playerId;
 

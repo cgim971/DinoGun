@@ -36,9 +36,9 @@ public class PlayerController : MonoBehaviour
         width = Screen.width / 2;
     }
 
-    public void SetUp(bool isRemote, int playerId)
+    public void SetUp(bool isPlayer, int playerId)
     {
-        _isRemote = isRemote;
+        _isRemote = !isPlayer;
         _playerId = playerId;
     }
 

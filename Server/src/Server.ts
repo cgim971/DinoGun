@@ -36,11 +36,12 @@ socketServer.on("connection", (soc: WS, req: IncomingMessage) => {
     SessionManager.Instance.addSession(session, id);
     console.log(`플레이어 ${id} 접속`);
 
-    let msg = new dinoGunio.S_Pos({ x: 5, y: 5 });
-    session.sendData(msg.serialize(), dinoGunio.MSGID.S_POS);
+    let spawnPosition = MapManager.Instance.getRandomSpawnPosition();
+    let msg = new dinoGunio.S_Init({ playerId: playerId, spawnPosition: spawnPosition });
+    session.sendData(msg.serialize(), dinoGunio.MSGID.S_INIT);
 
     playerId++;
-    
+
     soc.on("message", (data: RawData, isBinary: boolean) => {
         if (isBinary == true) {
             session.receiveMsg(data);
