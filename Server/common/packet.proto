@@ -12,8 +12,6 @@ enum MSGID
     C_MOVE = 4;
     S_PLAYERLIST = 5;
     S_LEAVE = 6;
-    
-
 }
 
 message PlayerInfo

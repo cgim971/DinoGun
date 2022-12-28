@@ -6,7 +6,6 @@ public enum AnimationState
 {
     IDLE,
     RUN,
-
 }
 
 public class DinoController : MonoBehaviour

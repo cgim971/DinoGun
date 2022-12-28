@@ -16,8 +16,8 @@ public class SInitListHandler : IPacketHandler
         {
             if (playerInfo.PlayerId == playerController.PlayerId) continue;
 
-            Vector2 pos = new Vector2(playerInfo.Position.X, playerInfo.Position.Y);
-            GameManager.Instance.SpawnPlayer(pos, playerInfo.PlayerId, false);
+            PositionData positionData = Util.ChangePositionInfo(playerInfo.Position);
+            GameManager.Instance.SpawnPlayer(positionData.pos, playerInfo.PlayerId, false);
         }
     }
 }

@@ -15,8 +15,6 @@ public class GunController : MonoBehaviour
 
     public void CheckFire()
     {
-
+        // 발사 로직
     }
-
-
 }

@@ -8,7 +8,6 @@ export default class SocketSession {
 
     isEnter: boolean = false;
 
-
     position: dinoGunio.Position = new dinoGunio.Position({ x: 0, y: 0, scaleX: 1, gunRotate: 0 });
 
     constructor(socket: WebSocket, playerId: number, CloseCallback: Function) {

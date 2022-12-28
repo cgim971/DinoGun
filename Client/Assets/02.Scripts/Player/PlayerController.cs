@@ -11,7 +11,6 @@ public class PlayerController : NetworkObject
 
     public Rigidbody2D Rigidbody => _rigidbody;
 
-
     private Rigidbody2D _rigidbody;
     private PlayerMove _playerMove;
     private DinoController _dinoController;
@@ -37,8 +36,12 @@ public class PlayerController : NetworkObject
     {
         _isRemote = !isPlayer;
         PlayerId = playerId;
-    }
 
+        if (_isRemote == false)
+        {
+            StartCoroutine(SendPositionAndRotation());
+        }
+    }
 
     private void Update()
     {
@@ -60,9 +63,13 @@ public class PlayerController : NetworkObject
     public void PlayAnimation()
     {
         if (_rigidbody.velocity.magnitude > 0)
+        {
             _dinoController.SetAnimator(AnimationState.RUN);
+        }
         else
+        {
             _dinoController.SetAnimator(AnimationState.IDLE);
+        }
     }
 
     private IEnumerator SendPositionAndRotation()
