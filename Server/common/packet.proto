@@ -24,8 +24,9 @@ message Position
 {
     float x = 1;
     float y = 2;
-    float scaleX = 3;
-    float gunRotate = 4;
+    float dinoScaleX = 3;
+    float gunScaleY = 4;
+    float gunRotate = 5;
 }
 
 message S_Init
@@ -60,7 +61,7 @@ message S_InitList
     repeated PlayerInfo playerList = 1;
 }
 
-message s_PlayerList
+message S_PlayerList
 {
     repeated PlayerInfo playerList = 1;
 }

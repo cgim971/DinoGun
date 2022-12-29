@@ -10,15 +10,23 @@ public enum AnimationState
 
 public class DinoController : MonoBehaviour
 {
+    public Transform DinoTs => _dinoTs;
     private Transform _dinoTs;
-
+    PlayerController _playerController;
     private Animator _animator;
 
-    private void Start()
+    public void Init(PlayerController playerController)
     {
         _dinoTs = transform.Find("Dino");
 
+        _playerController = playerController;
+
         _animator = _dinoTs.GetComponent<Animator>();
+    }
+
+    public void SetScale(int scaleX)
+    {
+        _dinoTs.localScale = new Vector3(scaleX, 1, 1);
     }
 
     public void SetAnimator(AnimationState state)

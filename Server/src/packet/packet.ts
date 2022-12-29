@@ -112,7 +112,8 @@ export namespace dinoGunio {
         constructor(data?: any[] | {
             x?: number;
             y?: number;
-            scaleX?: number;
+            dinoScaleX?: number;
+            gunScaleY?: number;
             gunRotate?: number;
         }) {
             super();
@@ -124,8 +125,11 @@ export namespace dinoGunio {
                 if ("y" in data && data.y != undefined) {
                     this.y = data.y;
                 }
-                if ("scaleX" in data && data.scaleX != undefined) {
-                    this.scaleX = data.scaleX;
+                if ("dinoScaleX" in data && data.dinoScaleX != undefined) {
+                    this.dinoScaleX = data.dinoScaleX;
+                }
+                if ("gunScaleY" in data && data.gunScaleY != undefined) {
+                    this.gunScaleY = data.gunScaleY;
                 }
                 if ("gunRotate" in data && data.gunRotate != undefined) {
                     this.gunRotate = data.gunRotate;
@@ -144,22 +148,29 @@ export namespace dinoGunio {
         set y(value: number) {
             pb_1.Message.setField(this, 2, value);
         }
-        get scaleX() {
+        get dinoScaleX() {
             return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
         }
-        set scaleX(value: number) {
+        set dinoScaleX(value: number) {
             pb_1.Message.setField(this, 3, value);
         }
-        get gunRotate() {
+        get gunScaleY() {
             return pb_1.Message.getFieldWithDefault(this, 4, 0) as number;
         }
-        set gunRotate(value: number) {
+        set gunScaleY(value: number) {
             pb_1.Message.setField(this, 4, value);
+        }
+        get gunRotate() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set gunRotate(value: number) {
+            pb_1.Message.setField(this, 5, value);
         }
         static fromObject(data: {
             x?: number;
             y?: number;
-            scaleX?: number;
+            dinoScaleX?: number;
+            gunScaleY?: number;
             gunRotate?: number;
         }): Position {
             const message = new Position({});
@@ -169,8 +180,11 @@ export namespace dinoGunio {
             if (data.y != null) {
                 message.y = data.y;
             }
-            if (data.scaleX != null) {
-                message.scaleX = data.scaleX;
+            if (data.dinoScaleX != null) {
+                message.dinoScaleX = data.dinoScaleX;
+            }
+            if (data.gunScaleY != null) {
+                message.gunScaleY = data.gunScaleY;
             }
             if (data.gunRotate != null) {
                 message.gunRotate = data.gunRotate;
@@ -181,7 +195,8 @@ export namespace dinoGunio {
             const data: {
                 x?: number;
                 y?: number;
-                scaleX?: number;
+                dinoScaleX?: number;
+                gunScaleY?: number;
                 gunRotate?: number;
             } = {};
             if (this.x != null) {
@@ -190,8 +205,11 @@ export namespace dinoGunio {
             if (this.y != null) {
                 data.y = this.y;
             }
-            if (this.scaleX != null) {
-                data.scaleX = this.scaleX;
+            if (this.dinoScaleX != null) {
+                data.dinoScaleX = this.dinoScaleX;
+            }
+            if (this.gunScaleY != null) {
+                data.gunScaleY = this.gunScaleY;
             }
             if (this.gunRotate != null) {
                 data.gunRotate = this.gunRotate;
@@ -206,10 +224,12 @@ export namespace dinoGunio {
                 writer.writeFloat(1, this.x);
             if (this.y != 0)
                 writer.writeFloat(2, this.y);
-            if (this.scaleX != 0)
-                writer.writeFloat(3, this.scaleX);
+            if (this.dinoScaleX != 0)
+                writer.writeFloat(3, this.dinoScaleX);
+            if (this.gunScaleY != 0)
+                writer.writeFloat(4, this.gunScaleY);
             if (this.gunRotate != 0)
-                writer.writeFloat(4, this.gunRotate);
+                writer.writeFloat(5, this.gunRotate);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -226,9 +246,12 @@ export namespace dinoGunio {
                         message.y = reader.readFloat();
                         break;
                     case 3:
-                        message.scaleX = reader.readFloat();
+                        message.dinoScaleX = reader.readFloat();
                         break;
                     case 4:
+                        message.gunScaleY = reader.readFloat();
+                        break;
+                    case 5:
                         message.gunRotate = reader.readFloat();
                         break;
                     default: reader.skipField();
@@ -703,7 +726,7 @@ export namespace dinoGunio {
             return S_InitList.deserialize(bytes);
         }
     }
-    export class s_PlayerList extends pb_1.Message {
+    export class S_PlayerList extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             playerList?: PlayerInfo[];
@@ -724,8 +747,8 @@ export namespace dinoGunio {
         }
         static fromObject(data: {
             playerList?: ReturnType<typeof PlayerInfo.prototype.toObject>[];
-        }): s_PlayerList {
-            const message = new s_PlayerList({});
+        }): S_PlayerList {
+            const message = new S_PlayerList({});
             if (data.playerList != null) {
                 message.playerList = data.playerList.map(item => PlayerInfo.fromObject(item));
             }
@@ -749,8 +772,8 @@ export namespace dinoGunio {
             if (!w)
                 return writer.getResultBuffer();
         }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): s_PlayerList {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new s_PlayerList();
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): S_PlayerList {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new S_PlayerList();
             while (reader.nextField()) {
                 if (reader.isEndGroup())
                     break;
@@ -766,8 +789,8 @@ export namespace dinoGunio {
         serializeBinary(): Uint8Array {
             return this.serialize();
         }
-        static deserializeBinary(bytes: Uint8Array): s_PlayerList {
-            return s_PlayerList.deserialize(bytes);
+        static deserializeBinary(bytes: Uint8Array): S_PlayerList {
+            return S_PlayerList.deserialize(bytes);
         }
     }
 }

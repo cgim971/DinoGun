@@ -38,7 +38,7 @@ export default class SessionManager {
             if(s.isEnter == false) continue;
 
             list.push(new dinoGunio.PlayerInfo({ playerId: s.playerId, position: s.position }));
-        }
+        }       
 
         return list;
     }

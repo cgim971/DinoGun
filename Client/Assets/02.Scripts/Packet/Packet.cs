@@ -26,32 +26,32 @@ namespace C.Proto.DinoGun {
           string.Concat(
             "CgxwYWNrZXQucHJvdG8SCWRpbm9HdW5pbyJFCgpQbGF5ZXJJbmZvEhAKCHBs",
             "YXllcklkGAEgASgFEiUKCHBvc2l0aW9uGAIgASgLMhMuZGlub0d1bmlvLlBv",
-            "c2l0aW9uIkMKCFBvc2l0aW9uEgkKAXgYASABKAISCQoBeRgCIAEoAhIOCgZz",
-            "Y2FsZVgYAyABKAISEQoJZ3VuUm90YXRlGAQgASgCIkYKBlNfSW5pdBIQCghw",
-            "bGF5ZXJJZBgBIAEoBRIqCg1zcGF3blBvc2l0aW9uGAIgASgLMhMuZGlub0d1",
-            "bmlvLlBvc2l0aW9uIjAKB0NfRW50ZXISJQoIcG9zaXRpb24YASABKAsyEy5k",
-            "aW5vR3VuaW8uUG9zaXRpb24iNAoHU19FbnRlchIpCgpwbGF5ZXJJbmZvGAEg",
-            "ASgLMhUuZGlub0d1bmlvLlBsYXllckluZm8iGwoHU19MZWF2ZRIQCghwbGF5",
-            "ZXJJZBgBIAEoBSJBCgZDX01vdmUSEAoIcGxheWVySWQYASABKAUSJQoIcG9z",
-            "aXRpb24YAiABKAsyEy5kaW5vR3VuaW8uUG9zaXRpb24iNwoKU19Jbml0TGlz",
-            "dBIpCgpwbGF5ZXJMaXN0GAEgAygLMhUuZGlub0d1bmlvLlBsYXllckluZm8i",
-            "OQoMc19QbGF5ZXJMaXN0EikKCnBsYXllckxpc3QYASADKAsyFS5kaW5vR3Vu",
-            "aW8uUGxheWVySW5mbypoCgVNU0dJRBILCgdTX0VOVEVSEAASCgoGU19JTklU",
-            "EAESCwoHQ19FTlRFUhACEg4KClNfSU5JVExJU1QQAxIKCgZDX01PVkUQBBIQ",
-            "CgxTX1BMQVlFUkxJU1QQBRILCgdTX0xFQVZFEAZCEqoCD0MuUHJvdG8uRGlu",
-            "b0d1bmIGcHJvdG8z"));
+            "c2l0aW9uIloKCFBvc2l0aW9uEgkKAXgYASABKAISCQoBeRgCIAEoAhISCgpk",
+            "aW5vU2NhbGVYGAMgASgCEhEKCWd1blNjYWxlWRgEIAEoAhIRCglndW5Sb3Rh",
+            "dGUYBSABKAIiRgoGU19Jbml0EhAKCHBsYXllcklkGAEgASgFEioKDXNwYXdu",
+            "UG9zaXRpb24YAiABKAsyEy5kaW5vR3VuaW8uUG9zaXRpb24iMAoHQ19FbnRl",
+            "chIlCghwb3NpdGlvbhgBIAEoCzITLmRpbm9HdW5pby5Qb3NpdGlvbiI0CgdT",
+            "X0VudGVyEikKCnBsYXllckluZm8YASABKAsyFS5kaW5vR3VuaW8uUGxheWVy",
+            "SW5mbyIbCgdTX0xlYXZlEhAKCHBsYXllcklkGAEgASgFIkEKBkNfTW92ZRIQ",
+            "CghwbGF5ZXJJZBgBIAEoBRIlCghwb3NpdGlvbhgCIAEoCzITLmRpbm9HdW5p",
+            "by5Qb3NpdGlvbiI3CgpTX0luaXRMaXN0EikKCnBsYXllckxpc3QYASADKAsy",
+            "FS5kaW5vR3VuaW8uUGxheWVySW5mbyI5CgxTX1BsYXllckxpc3QSKQoKcGxh",
+            "eWVyTGlzdBgBIAMoCzIVLmRpbm9HdW5pby5QbGF5ZXJJbmZvKmgKBU1TR0lE",
+            "EgsKB1NfRU5URVIQABIKCgZTX0lOSVQQARILCgdDX0VOVEVSEAISDgoKU19J",
+            "TklUTElTVBADEgoKBkNfTU9WRRAEEhAKDFNfUExBWUVSTElTVBAFEgsKB1Nf",
+            "TEVBVkUQBkISqgIPQy5Qcm90by5EaW5vR3VuYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::C.Proto.DinoGun.MSGID), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.PlayerInfo), global::C.Proto.DinoGun.PlayerInfo.Parser, new[]{ "PlayerId", "Position" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.Position), global::C.Proto.DinoGun.Position.Parser, new[]{ "X", "Y", "ScaleX", "GunRotate" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.Position), global::C.Proto.DinoGun.Position.Parser, new[]{ "X", "Y", "DinoScaleX", "GunScaleY", "GunRotate" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.S_Init), global::C.Proto.DinoGun.S_Init.Parser, new[]{ "PlayerId", "SpawnPosition" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.C_Enter), global::C.Proto.DinoGun.C_Enter.Parser, new[]{ "Position" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.S_Enter), global::C.Proto.DinoGun.S_Enter.Parser, new[]{ "PlayerInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.S_Leave), global::C.Proto.DinoGun.S_Leave.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.C_Move), global::C.Proto.DinoGun.C_Move.Parser, new[]{ "PlayerId", "Position" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.S_InitList), global::C.Proto.DinoGun.S_InitList.Parser, new[]{ "PlayerList" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.s_PlayerList), global::C.Proto.DinoGun.s_PlayerList.Parser, new[]{ "PlayerList" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::C.Proto.DinoGun.S_PlayerList), global::C.Proto.DinoGun.S_PlayerList.Parser, new[]{ "PlayerList" }, null, null, null, null)
           }));
     }
     #endregion
@@ -342,7 +342,8 @@ namespace C.Proto.DinoGun {
     public Position(Position other) : this() {
       x_ = other.x_;
       y_ = other.y_;
-      scaleX_ = other.scaleX_;
+      dinoScaleX_ = other.dinoScaleX_;
+      gunScaleY_ = other.gunScaleY_;
       gunRotate_ = other.gunRotate_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -377,20 +378,32 @@ namespace C.Proto.DinoGun {
       }
     }
 
-    /// <summary>Field number for the "scaleX" field.</summary>
-    public const int ScaleXFieldNumber = 3;
-    private float scaleX_;
+    /// <summary>Field number for the "dinoScaleX" field.</summary>
+    public const int DinoScaleXFieldNumber = 3;
+    private float dinoScaleX_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float ScaleX {
-      get { return scaleX_; }
+    public float DinoScaleX {
+      get { return dinoScaleX_; }
       set {
-        scaleX_ = value;
+        dinoScaleX_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "gunScaleY" field.</summary>
+    public const int GunScaleYFieldNumber = 4;
+    private float gunScaleY_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float GunScaleY {
+      get { return gunScaleY_; }
+      set {
+        gunScaleY_ = value;
       }
     }
 
     /// <summary>Field number for the "gunRotate" field.</summary>
-    public const int GunRotateFieldNumber = 4;
+    public const int GunRotateFieldNumber = 5;
     private float gunRotate_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -418,7 +431,8 @@ namespace C.Proto.DinoGun {
       }
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(X, other.X)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Y, other.Y)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ScaleX, other.ScaleX)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(DinoScaleX, other.DinoScaleX)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(GunScaleY, other.GunScaleY)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(GunRotate, other.GunRotate)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -429,7 +443,8 @@ namespace C.Proto.DinoGun {
       int hash = 1;
       if (X != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(X);
       if (Y != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Y);
-      if (ScaleX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ScaleX);
+      if (DinoScaleX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DinoScaleX);
+      if (GunScaleY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(GunScaleY);
       if (GunRotate != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(GunRotate);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -457,12 +472,16 @@ namespace C.Proto.DinoGun {
         output.WriteRawTag(21);
         output.WriteFloat(Y);
       }
-      if (ScaleX != 0F) {
+      if (DinoScaleX != 0F) {
         output.WriteRawTag(29);
-        output.WriteFloat(ScaleX);
+        output.WriteFloat(DinoScaleX);
+      }
+      if (GunScaleY != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(GunScaleY);
       }
       if (GunRotate != 0F) {
-        output.WriteRawTag(37);
+        output.WriteRawTag(45);
         output.WriteFloat(GunRotate);
       }
       if (_unknownFields != null) {
@@ -483,12 +502,16 @@ namespace C.Proto.DinoGun {
         output.WriteRawTag(21);
         output.WriteFloat(Y);
       }
-      if (ScaleX != 0F) {
+      if (DinoScaleX != 0F) {
         output.WriteRawTag(29);
-        output.WriteFloat(ScaleX);
+        output.WriteFloat(DinoScaleX);
+      }
+      if (GunScaleY != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(GunScaleY);
       }
       if (GunRotate != 0F) {
-        output.WriteRawTag(37);
+        output.WriteRawTag(45);
         output.WriteFloat(GunRotate);
       }
       if (_unknownFields != null) {
@@ -507,7 +530,10 @@ namespace C.Proto.DinoGun {
       if (Y != 0F) {
         size += 1 + 4;
       }
-      if (ScaleX != 0F) {
+      if (DinoScaleX != 0F) {
+        size += 1 + 4;
+      }
+      if (GunScaleY != 0F) {
         size += 1 + 4;
       }
       if (GunRotate != 0F) {
@@ -531,8 +557,11 @@ namespace C.Proto.DinoGun {
       if (other.Y != 0F) {
         Y = other.Y;
       }
-      if (other.ScaleX != 0F) {
-        ScaleX = other.ScaleX;
+      if (other.DinoScaleX != 0F) {
+        DinoScaleX = other.DinoScaleX;
+      }
+      if (other.GunScaleY != 0F) {
+        GunScaleY = other.GunScaleY;
       }
       if (other.GunRotate != 0F) {
         GunRotate = other.GunRotate;
@@ -561,10 +590,14 @@ namespace C.Proto.DinoGun {
             break;
           }
           case 29: {
-            ScaleX = input.ReadFloat();
+            DinoScaleX = input.ReadFloat();
             break;
           }
           case 37: {
+            GunScaleY = input.ReadFloat();
+            break;
+          }
+          case 45: {
             GunRotate = input.ReadFloat();
             break;
           }
@@ -592,10 +625,14 @@ namespace C.Proto.DinoGun {
             break;
           }
           case 29: {
-            ScaleX = input.ReadFloat();
+            DinoScaleX = input.ReadFloat();
             break;
           }
           case 37: {
+            GunScaleY = input.ReadFloat();
+            break;
+          }
+          case 45: {
             GunRotate = input.ReadFloat();
             break;
           }
@@ -1839,16 +1876,16 @@ namespace C.Proto.DinoGun {
 
   }
 
-  public sealed partial class s_PlayerList : pb::IMessage<s_PlayerList>
+  public sealed partial class S_PlayerList : pb::IMessage<S_PlayerList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<s_PlayerList> _parser = new pb::MessageParser<s_PlayerList>(() => new s_PlayerList());
+    private static readonly pb::MessageParser<S_PlayerList> _parser = new pb::MessageParser<S_PlayerList>(() => new S_PlayerList());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<s_PlayerList> Parser { get { return _parser; } }
+    public static pb::MessageParser<S_PlayerList> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1864,7 +1901,7 @@ namespace C.Proto.DinoGun {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public s_PlayerList() {
+    public S_PlayerList() {
       OnConstruction();
     }
 
@@ -1872,15 +1909,15 @@ namespace C.Proto.DinoGun {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public s_PlayerList(s_PlayerList other) : this() {
+    public S_PlayerList(S_PlayerList other) : this() {
       playerList_ = other.playerList_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public s_PlayerList Clone() {
-      return new s_PlayerList(this);
+    public S_PlayerList Clone() {
+      return new S_PlayerList(this);
     }
 
     /// <summary>Field number for the "playerList" field.</summary>
@@ -1897,12 +1934,12 @@ namespace C.Proto.DinoGun {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as s_PlayerList);
+      return Equals(other as S_PlayerList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(s_PlayerList other) {
+    public bool Equals(S_PlayerList other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1967,7 +2004,7 @@ namespace C.Proto.DinoGun {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(s_PlayerList other) {
+    public void MergeFrom(S_PlayerList other) {
       if (other == null) {
         return;
       }

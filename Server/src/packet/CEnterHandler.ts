@@ -10,7 +10,7 @@ export default class CEnterHandler implements PacketHandler {
         session.isEnter = true;
         // 새로 들어오면 포지션을 변경하고
         session.position = cEnter.position;
-
+        
         // 정보를 생성 후
         let info = new dinoGunio.PlayerInfo({ playerId: session.playerId, position: session.position });
         // 넣는다.
@@ -23,4 +23,4 @@ export default class CEnterHandler implements PacketHandler {
         let initMsg = new dinoGunio.S_InitList({playerList:list});
         session.sendData(initMsg.serialize(), dinoGunio.MSGID.S_INITLIST);
     }
-}
+}           

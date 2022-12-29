@@ -7,6 +7,7 @@ import Path from 'path';
 import PacketManager from './PacketManager';
 import SessionManager from './SessionManager';
 import SocketSession from './SocketSession';
+import JobTimer from './JobTimer';
 
 const App: Application = Express();
 const httpServer = App.listen(50000, () => {
@@ -48,3 +49,12 @@ socketServer.on("connection", (soc: WS, req: IncomingMessage) => {
         }
     });
 });
+
+
+let moveTimer = new JobTimer(40, ()=>{
+    let list = SessionManager.Instance.getPlayerList();
+    let data = new dinoGunio.S_PlayerList({playerList:list});
+    SessionManager.Instance.broadCastMessage(data.serialize(), dinoGunio.MSGID.S_PLAYERLIST);
+});
+
+moveTimer.startTimer();

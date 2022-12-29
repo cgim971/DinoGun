@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour
 
     private CinemachineVirtualCamera _cmVcam;
 
-
-
-
     private void Awake()
     {
         if (_instance != null)
@@ -35,13 +32,13 @@ public class GameManager : MonoBehaviour
         NetworkManager.Instance.Connection();
 
         MapManager.Instance = new MapManager(_mainMap);
+        PlayerManager.Instance = new PlayerManager();
 
         _cmVcam = GameObject.Find("FollowCam").GetComponent<CinemachineVirtualCamera>();
     }
 
     private void OnDestroy() => NetworkManager.Instance.Disconnect();
 
-   
     internal PlayerController SpawnPlayer(Vector3 pos, int playerId, bool isPlayer)
     {
         PlayerController playerController = Instantiate(_playerPrefab, pos, Quaternion.identity);
@@ -54,10 +51,9 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // Ãß°¡
-        }
+            PlayerManager.Instance.AddRemotePlayer(playerController);
+        }   
 
         return playerController;
     }
-
 }

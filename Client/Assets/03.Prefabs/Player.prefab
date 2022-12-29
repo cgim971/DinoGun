@@ -109,20 +109,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 3009201449930775492}
     m_ColliderPaths:
-    - - X: 3401725
-        Y: -4280759
-      - X: 3401725
-        Y: 219241
-      - X: -1597981
-        Y: 218948
-      - X: -1597688
-        Y: -4280759
+    - - X: 2499707
+        Y: -5650000
+      - X: 2499707
+        Y: -1150000
+      - X: -2500000
+        Y: -1150293
+      - X: -2499707
+        Y: -5650000
   m_CompositePaths:
     m_Paths:
-    - - {x: 0.3401432, y: -0.4280759}
-      - {x: 0.3401432, y: 0.0219241}
-      - {x: -0.1597981, y: 0.0218655}
-      - {x: -0.15973951, y: -0.4280759}
+    - - {x: 0.24994141, y: -0.565}
+      - {x: 0.24994141, y: -0.115}
+      - {x: -0.25, y: -0.1150586}
+      - {x: -0.24994141, y: -0.565}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!114 &3009201448176555383
@@ -198,7 +198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3009201448348032214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09020185, y: 0.13692412, z: 0.3500022}
+  m_LocalPosition: {x: 0, y: -0.224, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3009201448818546511}
@@ -230,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3009201448818546510}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.244, y: -0.199, z: 0}
+  m_LocalPosition: {x: 0.32, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3009201447935191881}
@@ -315,7 +315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3009201449930775495}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09020185, y: 0.13692412, z: 0.3500022}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3009201448176555379}

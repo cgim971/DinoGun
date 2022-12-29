@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class PlayerController : NetworkObject
 {
-
     public bool IsRemote => _isRemote;
     bool _isRemote = false;
 
     public Rigidbody2D Rigidbody => _rigidbody;
+    public DinoController DinoController => _dinoController;
+
 
     private Rigidbody2D _rigidbody;
     private PlayerMove _playerMove;
@@ -18,16 +19,16 @@ public class PlayerController : NetworkObject
 
     float width = 0;
 
-
-    private void Start()
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerMove = GetComponent<PlayerMove>();
         _dinoController = GetComponent<DinoController>();
         _gunController = GetComponent<GunController>();
 
-
         _playerMove.Init(this);
+        _dinoController.Init(this);
+        _gunController.Init(this);
 
         width = Screen.width / 2;
     }
@@ -47,17 +48,19 @@ public class PlayerController : NetworkObject
     {
         if (IsRemote == false)
         {
-            _playerMove.CheckMove();
+            _playerMove.CheckInput();
             LookMouse();
             PlayAnimation();
+            _gunController.CheckInput();
         }
     }
 
     public void LookMouse()
     {
         float x = Input.mousePosition.x;
+        int scaleX = (int)(x == width ? transform.localScale.x : x > width ? 1 : -1);
 
-        transform.localScale = new Vector3(x == width ? transform.localScale.x : x > width ? 1 : -1, 1, 1);
+        _dinoController.SetScale(scaleX);
     }
 
     public void PlayAnimation()
@@ -72,6 +75,13 @@ public class PlayerController : NetworkObject
         }
     }
 
+    public void SetPositionData(PositionData positionData, bool isImmediate = false)
+    {
+        _dinoController.SetScale(positionData.dinoScaleX);
+        _gunController.SetScaleAndRot(positionData.gunScaleY, positionData.gunRot);
+        _playerMove.SetPositionData(positionData.pos, isImmediate);
+    }
+
     private IEnumerator SendPositionAndRotation()
     {
         Position position = new Position();
@@ -84,8 +94,9 @@ public class PlayerController : NetworkObject
 
             position.X = pos.x;
             position.Y = pos.y;
-            position.ScaleX = transform.localScale.x;
-            position.GunRotate = _gunController.GunTs.rotation.z;
+            position.DinoScaleX = _dinoController.DinoTs.localScale.x;
+            position.GunScaleY = _gunController.GunTs.localScale.y;
+            position.GunRotate = _gunController.GunTs.eulerAngles.z;
 
             C_Move cMove = new C_Move { PlayerId = PlayerId, Position = position };
 

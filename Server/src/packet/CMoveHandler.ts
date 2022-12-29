@@ -7,5 +7,7 @@ export default class CMoveHandler implements PacketHandler{
         let cMove= dinoGunio.C_Move.deserialize(buffer);
         
         session.position = cMove.position;
+
+        
     }
 }

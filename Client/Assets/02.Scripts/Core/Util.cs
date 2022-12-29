@@ -7,7 +7,8 @@ public struct PositionData
 {
     public Vector3 pos;
     public Quaternion gunRot;
-    public int scaleX;
+    public int dinoScaleX;
+    public int gunScaleY;
 }
 
 public class Util
@@ -18,7 +19,8 @@ public class Util
         {
             pos = new Vector3(info.X, info.Y, 0),
             gunRot = Quaternion.Euler(0, 0, info.GunRotate),
-            scaleX = (int)(info.ScaleX)
+            dinoScaleX = (int)(info.DinoScaleX),
+            gunScaleY = (int)(info.GunScaleY),
         };
 
         return data;

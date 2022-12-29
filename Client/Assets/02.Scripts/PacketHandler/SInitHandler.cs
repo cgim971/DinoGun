@@ -14,9 +14,10 @@ public class SInitHandler : IPacketHandler
         PlayerController playerController = GameManager.Instance.SpawnPlayer(pos, msg.PlayerId, true);
 
         pos = playerController.transform.position;
-        Position position = new Position { X = pos.x, Y = pos.y, GunRotate = 0, ScaleX = 1 };
+        Position position = new Position { X = pos.x, Y = pos.y, GunRotate = 0, DinoScaleX = 1, GunScaleY = 1 };
 
         C_Enter enterMsg = new C_Enter { Position = position };
         NetworkManager.Instance.RegisterSend((ushort)MSGID.CEnter, enterMsg);
     }
 }
+    
