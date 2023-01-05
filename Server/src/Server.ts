@@ -27,7 +27,7 @@ SessionManager.Instance = new SessionManager();
 let playerId: number = 1;
 
 socketServer.on("connection", (soc: WS, req: IncomingMessage) => {
-
+    
     const id: number = playerId;
     let session: SocketSession = new SocketSession(soc, id, () => {
         SessionManager.Instance.removeSession(id);

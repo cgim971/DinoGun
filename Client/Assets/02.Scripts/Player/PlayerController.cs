@@ -17,7 +17,7 @@ public class PlayerController : NetworkObject
     private DinoController _dinoController;
     private GunController _gunController;
 
-    float width = 0;
+    float _width = 0;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class PlayerController : NetworkObject
         _dinoController.Init(this);
         _gunController.Init(this);
 
-        width = Screen.width / 2;
+        _width = Screen.width / 2;
     }
 
     public void SetUp(bool isPlayer, int playerId)
@@ -58,7 +58,7 @@ public class PlayerController : NetworkObject
     public void LookMouse()
     {
         float x = Input.mousePosition.x;
-        int scaleX = (int)(x == width ? transform.localScale.x : x > width ? 1 : -1);
+        int scaleX = (int)(x == _width ? transform.localScale.x : x > _width ? 1 : -1);
 
         _dinoController.SetScale(scaleX);
     }

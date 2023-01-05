@@ -12,7 +12,7 @@ public class DinoController : MonoBehaviour
 {
     public Transform DinoTs => _dinoTs;
     private Transform _dinoTs;
-    PlayerController _playerController;
+    private PlayerController _playerController;
     private Animator _animator;
 
     public void Init(PlayerController playerController)
@@ -27,7 +27,7 @@ public class DinoController : MonoBehaviour
     public void SetScale(int scaleX)
     {
         _dinoTs.localScale = new Vector3(scaleX, 1, 1);
-    }
+    }           
 
     public void SetAnimator(AnimationState state)
     {

@@ -2834,7 +2834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMap: {fileID: 1363784761}
-  _connectUrl: ws://172.31.3.19:50000
+  _connectUrl: ws://localhost:50000
   _playerPrefab: {fileID: 3009201448176555383, guid: 75f5ed3662527d34aacb577fab959e2c, type: 3}
 --- !u!1 &1161316298
 GameObject:
